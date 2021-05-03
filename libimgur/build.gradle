@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // Retrofit 2
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"  // on adding api we will get access of this particular
+                                                             // library in our app module too but adding api instead of
+                                                             // implementation slows down the building process
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+
+    // Moshi converter factory
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    // Moshi Codegen
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // Kotlin Coroutine library (Core -> means not specific to android)
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    // Test
+    testImplementation 'junit:junit:4.13.2'
+}
