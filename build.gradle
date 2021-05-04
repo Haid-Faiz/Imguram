@@ -6,6 +6,7 @@ buildscript {
         moshi_version = "1.11.0"
         coroutine_version = "1.4.3"
         nav_version = "2.3.5"
+        okhttp_version = "4.9.1"
     }
     repositories {
         google()

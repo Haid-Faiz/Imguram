@@ -16,7 +16,7 @@ dependencies {
                                                              // library in our app module too but adding api instead of
                                                              // implementation slows down the building process
     // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     // Moshi converter factory
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
