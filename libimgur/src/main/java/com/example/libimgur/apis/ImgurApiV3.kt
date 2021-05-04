@@ -10,11 +10,11 @@ import retrofit2.http.Query
 interface ImgurApiV3 {
 
     @GET("gallery/{section}")
-    fun getGallery(
+    suspend fun getGallery(
         @Path("section") section: String,
         @Query("album_previews") albumPreviews: Boolean? = true
     ): Response<GalleryResponse>
 
     @GET("tags")
-    fun getTags(): Response<TagsResponse>
+    suspend fun getTags(): Response<TagsResponse>
 }
