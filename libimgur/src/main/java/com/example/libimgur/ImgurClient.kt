@@ -1,5 +1,6 @@
 package com.example.libimgur
 
+import com.example.libimgur.converters.EnumConverterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -25,7 +26,8 @@ object ImgurClient {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create()) // we have added out own enum to string converter
+            .addConverterFactory(EnumConverterFactory())
             .build()
     }
 
