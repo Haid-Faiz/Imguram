@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.imguram.databinding.FragmentFeedBinding
 import com.example.libimgur.params.Section
 
 class FeedFragment : Fragment() {
 
     private val feedViewModel: FeedViewModel by activityViewModels()   // Check to not use sharedViewModel becoz
-                                                                            // layout shifting was happening in arnav's tutorial
+
+    // layout shifting was happening in arnav's tutorial
     private var _binding: FragmentFeedBinding? = null
     private lateinit var feedListAdapter: FeedListAdapter
 
@@ -36,6 +39,8 @@ class FeedFragment : Fragment() {
         }
         feedListAdapter = FeedListAdapter()
         _binding!!.feedRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        _binding!!.feedRecyclerview.addItemDecoration(DividerItemDecoration(requireContext(),
+            DividerItemDecoration.VERTICAL))
         _binding!!.feedRecyclerview.adapter = feedListAdapter
 
         feedViewModel.feed.observe(viewLifecycleOwner) {
