@@ -1,4 +1,4 @@
-package com.example.imguram.ui.stories
+package com.example.imguram.ui.home
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.imguram.R
 import com.example.imguram.databinding.StoriesListItemBinding
+import com.example.imguram.ui.stories.StoryActivity
 import com.example.libimgur.models.Tag
 
 class StoriesListAdapter : ListAdapter<Tag, StoriesListAdapter.ViewHolder>(
@@ -30,7 +31,9 @@ class StoriesListAdapter : ListAdapter<Tag, StoriesListAdapter.ViewHolder>(
         }
         holder.binding.root.apply {
             setOnClickListener {
-                context.startActivity(Intent(context, StoryActivity::class.java))
+                context.startActivity(
+                    Intent(context, StoryActivity::class.java).putExtra("tag", tag.name)
+                )
             }
         }
     }

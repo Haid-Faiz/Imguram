@@ -2,7 +2,6 @@ package com.example.imguram.data
 
 import com.example.libimgur.ImgurClient
 import com.example.libimgur.apis.ImgurApiV3
-import com.example.libimgur.models.Gallery
 import com.example.libimgur.models.Image
 import com.example.libimgur.models.Tag
 import com.example.libimgur.models.TagResponse
@@ -25,8 +24,8 @@ class ImgurRepository {
         return api.getTags().body()?.data?.tags
     }
 
-    suspend fun getGalleryTag(tag: String): TagResponse? {
-        return api.getGalleryTag(tag).body()
+    suspend fun getTagImages(tag: String): List<Image>? {
+        return api.getGalleryTag(tag).body()?.data?.items
     }
 
 }

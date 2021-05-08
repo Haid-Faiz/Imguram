@@ -2,6 +2,7 @@ package com.example.libimgur
 
 import com.example.libimgur.apis.ImgurApiV3
 import com.example.libimgur.models.GalleryResponse
+import com.example.libimgur.models.TagResponse
 import com.example.libimgur.models.TagsResponse
 import com.example.libimgur.params.Section
 import kotlinx.coroutines.runBlocking
@@ -26,6 +27,14 @@ class ImgurApiV3Tests {
     fun `GET - tags working`() {
         runBlocking {
             val response: Response<TagsResponse> = api.getTags()
+            assertNotNull(response.body())
+        }
+    }
+
+    @Test
+    fun `GET - aww tag working`() {
+        runBlocking {
+            val response: Response<TagResponse> = api.getGalleryTag("aww")
             assertNotNull(response.body())
         }
     }

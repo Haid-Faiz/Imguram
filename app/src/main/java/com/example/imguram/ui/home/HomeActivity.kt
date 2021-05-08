@@ -9,7 +9,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.imguram.R
 import com.example.imguram.databinding.ActivityHomeBinding
-import com.example.imguram.ui.stories.StoriesListAdapter
 
 class HomeActivity : AppCompatActivity() {
 
