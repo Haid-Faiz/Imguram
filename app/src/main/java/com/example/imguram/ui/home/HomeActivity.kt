@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.Coil
+import coil.request.ImageRequest
 import com.example.imguram.R
 import com.example.imguram.databinding.ActivityHomeBinding
 
@@ -29,6 +31,17 @@ class HomeActivity : AppCompatActivity() {
         _binding?.storiesRecyclerview?.adapter = storiesListAdapter
         storiesViewModel.fetchStories()
         storiesViewModel.stories.observe(this) {
+            // Images PreLoading stuff
+            it.forEach { tag ->
+                val imageRequest = ImageRequest.Builder(this)
+                    .data("https://i.imgur.com/${tag.backgroundHash}.jpg")
+                    .size(resources.getDimensionPixelSize(R.dimen.story_head_image_view))
+                    .build()
+
+                // Now we need image loader to enqueue this request
+                Coil.imageLoader(this).enqueue(imageRequest)
+            }
+
             storiesListAdapter.submitList(it)
         }
     }

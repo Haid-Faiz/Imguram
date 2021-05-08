@@ -16,9 +16,9 @@
         app:cardCornerRadius="34dp">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="60dp"
+            android:layout_width="@dimen/story_head_image_view"
             android:layout_gravity="center"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/story_head_image_view"
             app:cardCornerRadius="30dp">
 
             <ImageView

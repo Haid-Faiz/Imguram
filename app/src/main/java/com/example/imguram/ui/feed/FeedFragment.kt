@@ -9,6 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.Coil
+import coil.request.ImageRequest
 import com.example.imguram.databinding.FragmentFeedBinding
 import com.example.libimgur.params.Section
 
@@ -42,8 +44,21 @@ class FeedFragment : Fragment() {
         _binding!!.feedRecyclerview.addItemDecoration(DividerItemDecoration(requireContext(),
             DividerItemDecoration.VERTICAL))
         _binding!!.feedRecyclerview.adapter = feedListAdapter
+    }
 
+    override fun onResume() {
+        super.onResume()
         feedViewModel.feed.observe(viewLifecycleOwner) {
+
+            it.forEach { image ->
+                val imageRequest = ImageRequest.Builder(requireContext())
+                    .data("https://i.imgur.com/${image.cover}.jpg")
+                    .size(_binding!!.feedRecyclerview.width)
+                    .build()
+
+                Coil.imageLoader(requireContext()).enqueue(imageRequest)
+            }
+
             feedListAdapter.submitList(it)
         }
     }
